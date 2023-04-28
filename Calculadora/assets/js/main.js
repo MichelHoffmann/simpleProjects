@@ -1,7 +1,19 @@
-function calculadora() {
-  const display = document.querySelector(".display");
+function criaCalculadora() {
+  return {
+    display: document.querySelector(".display"),
 
-  document.addEventListener("click", capturaBotoes);
+    inicia() {
+    },
+
+    cliqueBotoes() {
+      document.addEventListener("click", function (e) {
+        const el = e.target
+      });
+
+    },
+    
+  }
+
 
   function capturaBotoes(e) {
     const evento = e.target;
@@ -40,10 +52,25 @@ function calculadora() {
   }
 
   function realizaConta() {
-    const resultado = eval(display.value);
-    limpaDisplay();
-    adicionaDisplay(resultado);
+    //let resultado = display.value;
+
+    resultado = eval(display.value);
+
+    if (resultado === 0) {
+      display.value = String(resultado);
+    }
+
+    if (!resultado) {
+      alert("Conta invalida!");
+      limpaDisplay();
+      console.log(resultado);
+      console.log(!resultado);
+      return;
+    }
+
+    display.value = String(resultado);
   }
 }
 
-calculadora();
+const calculadora = criaCalculadora();
+calculadora.inicia()
